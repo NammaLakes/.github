@@ -4,66 +4,103 @@
 
 ## See It in Action
 
-Explore the live system here: [Website](https://nammalakes.github.io)  
-
----
+[Explore the live system](https://nammalakes.github.io)  
 
 ## What’s This Project All About?
 
 At its core, this system leverages a network of IoT devices and intelligent software to monitor lake parameters in real-time — from water quality to sensor-driven alerts. This allows stakeholders and authorities to take timely action, backed by accurate data and reliable insights.
 
-The project aims to:
-- Enable real-time, distributed monitoring of lakes using IoT sensors.
-- Provide an intuitive interface for citizens and officials to explore lake health.
-- Support environmental data collection and analysis at scale.
-- Promote transparency and awareness in urban water body management.
+The system provides: 
+- Real-time Monitoring: Continuous collection of water quality parameters
+- Intelligent Analytics: ML-powered anomaly detection (Isolation Forest algorithm)
+- Interactive Dashboard: User-friendly visualization of complex environmental data
+- Automated Alerts: Instant notifications when parameters exceed safe thresholds
+- Scalable Architecture: Built to monitor multiple water bodies simultaneously
 
----
+## The Problems We Are Solving
 
-## Major Components — It’s Not Just One Thing
+Traditional approaches to lake monitoring have significant limitations:
 
-This project is made up of multiple coordinated parts, each contributing a key function:
+- Delayed Response: Manual sampling causes critical delays in detecting contamination events
+- Limited Data: Infrequent collection makes it impossible to identify subtle trends
+- Low Visibility: Lack of centralized visualization prevents effective decision-making
+- No Early Warning: Absence of automated alerts means pollution events often go unnoticed
 
-### 1. **Frontend: ReactJS**
-A sleek, responsive dashboard and landing page built with **ReactJS**, enabling users to:
-- View live lake data
-- Analyze trends and alerts
-- Interact with visual reports
+## Architecture Overview
 
-### 2. **Documentation Site: Docusaurus**
-Documentation is no afterthought — we use **Docusaurus** to maintain clean, structured guides for developers and contributors.
+The NammaLakes system consists of three primary layers:
 
-### 3. **Backend Services: FastAPI**
-The brain of the operation. Fast, reliable, and lightweight — **FastAPI** handles incoming data, user interactions, and all system logic.
+### 1. Edge Layer (IoT Devices)
+- Hardware: ESP32 microcontrollers and Raspberry Pi devices
+- Sensors: pH, turbidity, temperature, dissolved oxygen, conductivity
+- Edge Processing: Initial data filtering and preprocessing
+- Communication: MQTT protocol for efficient, lightweight data transmission
+### 2. Cloud & Processing Layer
+- Backend APIs: FastAPI (Python) for robust, high-performance data handling
+- Databases:
+- PostgreSQL for structured data (sensor metadata, users, alerts)
+- SQLite for development/testing
+- Message Broker: RabbitMQ for reliable communication between components
+- Analytics: Machine learning models for identifying abnormal readings
+### 3. Application & Visualization Layer
+- Frontend: React-based responsive dashboard
+- Data Visualization: Interactive charts for parameter tracking
+- Geospatial Interface: Map-based sensor location overview
+- Documentation: Comprehensive guides with Docusaurus
 
-### 4. **Databases: SQLite and PostgreSQL**
-We use **SQLite** for development and testing, and **PostgreSQL** in production, offering a robust and scalable way to manage sensor and user data.
-
-### 5. **Deployment: AWS**
-The entire system runs in the cloud via **AWS**, ensuring it’s always available, scalable, and secure.
-
-### 6. **Containerization: Docker**
-With **Docker**, deploying or replicating the system becomes effortless. Every service is packaged, isolated, and version-controlled.
-
-### 7. **Package Management: Poetry**
-Managing Python dependencies is clean and modern, thanks to **Poetry**. It keeps our backend environment consistent and reproducible.
-
-### 8. **Message Queueing: RabbitMQ**
-**RabbitMQ** ensures smooth, decoupled communication between distributed sensor nodes and the backend — no data packet left behind.
-
-### 9. **Logging: Loguru**
-From error tracking to audit trails, **Loguru** helps us maintain precise logs for system activity and sensor alerts.
-
-### 10. **MQTT Protocol: Mosquitto**
-Real-time data from the lake sensors is sent through the **Mosquitto** MQTT broker, keeping the system lightweight and fast.
-
----
+## Technology Stack
+<table style="border-collapse: collapse; border: 2px solid #666;">
+<tr>
+   <th style="border: 2px solid #666; padding: 8px;">Component</th>
+   <th style="border: 2px solid #666; padding: 8px;">Technologies</th>
+</tr>
+<tr>
+   <td style="border: 2px solid #666; padding: 8px;">Frontend</td>
+   <td style="border: 2px solid #666; padding: 8px;">ReactJS, TypeScript, Tailwind CSS</td>
+</tr>
+<tr>
+   <td style="border: 2px solid #666; padding: 8px;">Backend</td>
+   <td style="border: 2px solid #666; padding: 8px;">FastAPI (Python)</td>
+</tr>
+<tr>
+   <td style="border: 2px solid #666; padding: 8px;">Database</td>
+   <td style="border: 2px solid #666; padding: 8px;">PostgreSQL</td>
+</tr>
+<tr>
+   <td style="border: 2px solid #666; padding: 8px;">IoT Communication</td>
+   <td style="border: 2px solid #666; padding: 8px;">MQTT (Mosquitto broker)</td>
+</tr>
+<tr>
+   <td style="border: 2px solid #666; padding: 8px;">Message Queue</td>
+   <td style="border: 2px solid #666; padding: 8px;">RabbitMQ</td>
+</tr>
+<tr>
+   <td style="border: 2px solid #666; padding: 8px;">Containerization</td>
+   <td style="border: 2px solid #666; padding: 8px;">Docker</td>
+</tr>
+<tr>
+   <td style="border: 2px solid #666; padding: 8px;">Deployment</td>
+   <td style="border: 2px solid #666; padding: 8px;">AWS</td>
+</tr>
+<tr>
+   <td style="border: 2px solid #666; padding: 8px;">Package Management</td>
+   <td style="border: 2px solid #666; padding: 8px;">Poetry</td>
+</tr>
+<tr>
+   <td style="border: 2px solid #666; padding: 8px;">Logging</td>
+   <td style="border: 2px solid #666; padding: 8px;">Loguru</td>
+</tr>
+<tr>
+   <td style="border: 2px solid #666; padding: 8px;">Documentation</td>
+   <td style="border: 2px solid #666; padding: 8px;">Docusaurus</td>
+</tr>
+</table>
 
 ## Intelligence Under the Hood
 
 This isn’t just a data dashboard. The system also uses **trained machine learning models**, such as the **Isolation Forest**, to detect anomalies in lake behavior — spotting irregular patterns in temperature, turbidity, or sensor activity.
 
-A built-in **chatbot** offers users quick answers to frequently asked questions and helps guide them through interacting with the system.
+Microservices are provided to allow alert messages to be sent via **E-Mails, Whatsapp and Telegram** to users
 
 ---
 ## The Bigger Picture: Why We’re Doing This
@@ -79,7 +116,13 @@ Whether you’re a developer, environmentalist, or curious citizen, we welcome c
 
 ---
 
-## Installation
+## Getting Started
+
+Prerequisites
+- Python 3.9+
+- Node.js 16+
+- Docker and Docker Compose
+- Poetry (Python dependency management)
 
 To get started locally:
 
@@ -98,7 +141,7 @@ poetry install
 Spin up containers (RabbitMQ, DB, API):
 
 ```bash
-docker-compose up --build
+sudo docker compose up --build
 ```
 
 For the dashboard:
@@ -117,20 +160,37 @@ npm install
 npm run start
 ```
 
-> Make sure you have Docker, Poetry, and Node.js installed.
-
----
-
 ## Folder Structure
 
 The project is organized into the following core folders:
 
-- `backend/` – FastAPI services, data processing, ML models  
-- `docs/` – Docusaurus documentation site  
-- `dashboard/` – ReactJS landing page and monitoring dashboard  
-- `node/` – Simulated IoT nodes and MQTT integrations  
-
----
+```bash
+NammaLakes/
+├── backend/               # FastAPI backend service
+│   ├── data/              # Data storage and logs
+│   ├── lakewatch/         # Core application code
+│   │   ├── db/            # Database models and DAOs
+│   │   ├── services/      # External service integrations
+│   │   └── web/           # API endpoints and server config
+│   ├── tests/             # Backend test suite
+│   └── deploy/            # Deployment configurations
+├── dashboard/             # React frontend application
+│   ├── src/               # Source code
+│   │   ├── components/    # Reusable UI components
+│   │   ├── hooks/         # Custom React hooks
+│   │   ├── lib/           # Utilities
+│   │   └── pages/         # Page components
+├── docs/                  # Documentation site
+│   └── docs/              # Markdown documentation files
+├── node/                  # IoT sensor node service
+│   ├── node/              # Node application code
+│   │   ├── read/          # GPIO sensor reading functionality
+│   │   ├── transmit/      # RabbitMQ transmission logic
+│   │   └── logger/        # Logging configuration
+│   └── tests/             # Node test suite
+└── .github/               # GitHub configuration files
+    └── profile/           # Organization profile
+```
 
 ## Contributing
 
